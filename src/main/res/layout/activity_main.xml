@@ -16,28 +16,25 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/button"
+            <TextView
+                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="AddJogo"
-                android:text="Adicionar Jogo" />
+                android:text="Lista de jogos :)" />
+        </LinearLayout>
 
-            <Space
-                android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="465dp"
+            android:orientation="horizontal">
+
+            <ListView
+                android:id="@+id/lista"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:rotation="17"
-                android:rotationX="360"
-                android:rotationY="-17" />
+                android:layout_weight="0" />
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Editar Jogo" />
         </LinearLayout>
 
         <LinearLayout
@@ -46,15 +43,14 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/edtConteudo"
+                android:id="@+id/descricao"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ems="10"
                 android:gravity="start|top"
                 android:inputType="textMultiLine"
-                android:minHeight="48dp"
-                android:text="a" />
+                tools:ignore="SpeakableTextPresentCheck" />
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

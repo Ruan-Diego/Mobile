@@ -10,12 +10,12 @@ import android.widget.EditText;
 
 public class ContactActivity extends AppCompatActivity {
 
-    public static int RESULT_ADD = 1;
-    public static int RESULT_CANCEL = 2;
 
     EditText edtNome;
-    EditText edtTel;
-    EditText edtBairro;
+    EditText edtTipo;
+
+    boolean edit;
+    int idContatoEditar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +23,23 @@ public class ContactActivity extends AppCompatActivity {
         setContentView(R.layout.activity_contact);
 
         edtNome = findViewById(R.id.edtNome);
-        edtTel = findViewById(R.id.edtTel);
-        edtBairro = findViewById(R.id.edtBairro);
+        edtTipo = findViewById(R.id.edtTipo);
 
+        edit = false;
+
+        if(getIntent().getExtras() != null){
+            idContatoEditar = (int) getIntent().getExtras().get("id");
+            String nome = (String) getIntent().getExtras().get("nome");
+            String tipo = (String) getIntent().getExtras().get("tipo");
+            edtNome.setText(nome);
+            edtTipo.setText(tipo);
+            edit = true;
+        }
 
     }
 
     public void cancelar(View view){
-        setResult(RESULT_CANCEL);
+        setResult(Constants.RESULT_CANCEL);
         finish();
     }
 
@@ -39,13 +48,14 @@ public class ContactActivity extends AppCompatActivity {
         Intent intent = new Intent();
 
         String nome = edtNome.getText().toString();
-        String tel = edtTel.getText().toString();
-        String bairro = edtBairro.getText().toString();
+        String tipo = edtTipo.getText().toString();
         intent.putExtra("Nome", nome);
-        intent.putExtra("Telefone", tel);
-        intent.putExtra("Bairro", bairro);
+        intent.putExtra("Tipo", tipo);
+        if(edit) {
+            intent.putExtra("id", idContatoEditar);
+        }
 
-        setResult(RESULT_ADD);
+        setResult(Constants.RESULT_ADD, intent);
         finish();
     }
 }
